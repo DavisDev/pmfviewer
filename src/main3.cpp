@@ -606,24 +606,8 @@ void setupGu(){
 	
 }
 int main(int argc, char *argv[]){
-	asm volatile (
-		"lui $1, 0x1\n"
-		"lui $2, 0x1234\n"
-		"ori $2, $2, 0x5678\n"
-		"sw $2, 0($1)\n"
-		"lui $2, 0x9ABC\n"
-		"ori $2, $2, 0xDEF0\n"
-		"sw $2, 4($1)\n"
-		"li $3, 0\n"
-		"addiu $1, $1, 1\n"
-		"lwl $3, 3($1)\n"
-		"lwr $3, 0($1)\n"
-		"addiu $1, $1, 8\n"
-		"swl $3, 3($1)\n"
-		"swr $3, 0($1)\n"
-	);
 
-	inr ret = sceUtilityLoadAvModule(PSP_AV_MODULE_AVCODEC);
+	int ret = sceUtilityLoadAvModule(PSP_AV_MODULE_AVCODEC);
 	if (ret < 0 && ret != 0x80110f02){
 		sceKernelExitGame();
 	}
